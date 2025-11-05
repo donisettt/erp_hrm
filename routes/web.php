@@ -8,6 +8,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SpbuController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProyekController;
 
 Route::get('/', function() {
     return redirect('/dashboard');
@@ -22,12 +23,18 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     })->name('dashboard'); 
 
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
     Route::resource('karyawan', KaryawanController::class);
     Route::resource('supplier', SupplierController::class);
     Route::resource('customer', CustomerController::class);
     Route::resource('spbu', SpbuController::class);
     Route::resource('material', MaterialController::class);
-
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    
+    Route::get('/proyek/get-spbu-by-customer', [ProyekController::class, 'getSpbuByCustomer'])
+         ->name('proyek.getSpbuByCustomer');
+    Route::get('/proyek/get-next-id', [ProyekController::class, 'getNextProyekId'])
+         ->name('proyek.getNextId');
+    Route::resource('proyek', ProyekController::class);
 });

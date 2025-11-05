@@ -5,6 +5,9 @@
         Request::is('customer*') ||
         Request::is('spbu*') ||
         Request::is('material*');
+
+    $isTransaksiActive = 
+        Request::is('proyek*');
 @endphp
 
 <nav class="sidebar" id="sidebar">
@@ -22,31 +25,25 @@
         </li>
 
         <li class="nav-item">
-
             <a class="nav-link" href="#masterDataCollapse" data-bs-toggle="collapse" role="button"
                 aria-expanded="{{ $isMasterDataActive ? 'true' : 'false' }}" aria-controls="masterDataCollapse">
                 <i class="fas fa-database fa-fw me-3"></i><span>Master Data</span>
                 <i class="fas fa-chevron-down fa-xs ms-auto"></i>
             </a>
-
             <div class="collapse {{ $isMasterDataActive ? 'show' : '' }}" id="masterDataCollapse">
                 <ul class="nav flex-column ms-4">
-
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('karyawan*') ? 'active' : '' }}"
                             href="{{ route('karyawan.index') }}">Data Karyawan</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('supplier*') ? 'active' : '' }}"
                             href="{{ route('supplier.index') }}">Data Supplier</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('customer*') ? 'active' : '' }}"
                             href="{{ route('customer.index') }}">Data Customer</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('spbu*') ? 'active' : '' }}"
                             href="{{ route('spbu.index') }}">Data SPBU</a>
@@ -60,13 +57,23 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="#transaksiCollapse" data-bs-toggle="collapse" role="button" aria-expanded="false"
-                aria-controls="transaksiCollapse">
+            <a class="nav-link" 
+               href="#transaksiCollapse" 
+               data-bs-toggle="collapse" 
+               role="button" 
+               aria-expanded="{{ $isTransaksiActive ? 'true' : 'false' }}"
+               aria-controls="transaksiCollapse">
                 <i class="fas fa-exchange-alt fa-fw me-3"></i><span>Transaksi</span>
                 <i class="fas fa-chevron-down fa-xs ms-auto"></i>
             </a>
-            <div class="collapse" id="transaksiCollapse">
+
+            <div class="collapse {{ $isTransaksiActive ? 'show' : '' }}" id="transaksiCollapse">
                 <ul class="nav flex-column ms-4">
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('proyek*') ? 'active' : '' }}" 
+                           href="{{ route('proyek.index') }}">Data Proyek</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="#">Pemasukan</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Pengeluaran</a></li>
                 </ul>
@@ -81,6 +88,7 @@
             </a>
             <div class="collapse" id="laporanCollapse">
                 <ul class="nav flex-column ms-4">
+                    <li class="nav-item"><a class="nav-link" href="#">Laporan Transaksi</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Laporan Pemasukan</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Laporan Pengeluaran</a></li>
                 </ul>
