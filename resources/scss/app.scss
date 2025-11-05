@@ -1,0 +1,222 @@
+@use 'bootstrap/scss/bootstrap';
+
+body {
+    background: #e0f2f7;
+    font-family: 'Poppins', sans-serif; 
+}
+
+.login-container {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.login-card {
+    background: #ffffff;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: none;
+    padding: 3rem;
+}
+
+.login-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #34495e;
+    margin-bottom: 0.5rem;
+}
+
+.login-subtitle {
+    font-size: 0.95rem;
+    color: #7f8c8d;
+    margin-bottom: 2rem;
+}
+
+.form-control-custom {
+    border-radius: 0.75rem;
+    border: 1px solid #ced4da;
+    padding: 0.85rem 1.25rem;
+    background-color: #f8f9fa;
+    transition: all 0.2s ease-in-out;
+
+    &:focus {
+        border-color: #80bdff;
+        box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+        background-color: #ffffff;
+    }
+}
+
+.input-group-text-custom {
+    border-radius: 0.75rem 0 0 0.75rem;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    padding: 0.85rem 1rem;
+    color: #495057;
+}
+
+.btn-primary-custom {
+    background: linear-gradient(45deg, #6a82fb, #fc5c7d);
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(106, 130, 251, 0.4);
+
+    &:hover {
+        background: linear-gradient(45deg, #fc5c7d, #6a82fb);
+        box-shadow: 0 6px 20px rgba(106, 130, 251, 0.6);
+        transform: translateY(-2px);
+    }
+}
+
+.login-logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1.5rem;
+    object-fit: contain;
+}
+
+.form-control-icon {
+    padding-left: 2.5rem;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #7f8c8d;
+    font-size: 1.1rem;
+}
+
+:root {
+  --sidebar-width: 260px;
+  --topbar-height: 70px;
+  --sidebar-bg: #ffffff;
+  --sidebar-brand-color: #333;
+  --sidebar-link-color: #555;
+  --sidebar-link-hover: #f0f0f0;
+  --sidebar-link-active: #4a55c7;
+  --topbar-bg: #4a55c7;
+  --content-bg: #f5f7fb;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--content-bg);
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  min-height: 100vh;
+  background: var(--sidebar-bg);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.sidebar-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.sidebar-brand {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--sidebar-brand-color);
+  text-decoration: none;
+}
+
+.sidebar-nav {
+  padding: 1rem;
+}
+
+.sidebar .nav-item {
+  margin-bottom: 0.25rem;
+}
+
+.sidebar .nav-link {
+  color: var(--sidebar-link-color);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.sidebar .nav-link i {
+  font-size: 1rem;
+}
+
+.sidebar .nav-link:hover {
+  background: var(--sidebar-link-hover);
+  color: var(--sidebar-brand-color);
+}
+
+.sidebar .nav-link.active {
+  background: var(--sidebar-link-active);
+  color: #ffffff;
+}
+
+.sidebar .nav-link[data-bs-toggle="collapse"] i.fa-chevron-down {
+  transition: transform 0.2s ease;
+}
+.sidebar .nav-link[data-bs-toggle="collapse"]:not(.collapsed) i.fa-chevron-down {
+  transform: rotate(180deg);
+}
+.sidebar .collapse .nav-link {
+  font-size: 0.875rem;
+  padding-left: 3rem;
+  color: #777;
+}
+
+.content-wrapper {
+  flex-grow: 1;
+  padding-left: var(--sidebar-width);
+  transition: all 0.3s ease;
+  min-width: 0;
+  min-height: 100vh;
+}
+
+.topbar {
+  height: var(--topbar-height);
+  background: var(--topbar-bg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 0 1.5rem;
+}
+
+.main-content {
+  padding: 1.5rem;
+  flex-grow: 1;
+}
+
+.footer {
+  background: #ffffff;
+  border-top: 1px solid #eee;
+  padding: 1rem 0;
+}
+
+body.sidebar-collapsed .sidebar {
+  left: calc(-1 * var(--sidebar-width));
+}
+
+body.sidebar-collapsed .content-wrapper {
+  padding-left: 0;
+}
