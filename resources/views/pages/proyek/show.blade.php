@@ -11,6 +11,10 @@
                         <input type="text" class="form-control" value="{{ $proyek->id_proyek }}" disabled>
                     </div>
                     <div class="mb-3">
+                        <label class="form-label">Invoice</label>
+                        <input type="text" class="form-control" value="{{ $proyek->invoice }}" disabled>
+                    </div>
+                    <div class="mb-3">
                         <label class="form-label">Perusahaan (Customer)</label>
                         <input type="text" class="form-control" value="{{ $proyek->customer->nama_perusahaan ?? 'N/A' }}"
                             disabled>
@@ -43,8 +47,21 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-start mt-4">
-                <a href="{{ route('proyek.index') }}" class="btn btn-primary">Kembali ke data proyek</a>
+
+            <div class="d-flex justify-content-between mt-4">
+                
+                <div>
+                    <a href="{{ route('proyek.index') }}" class="btn btn-primary">
+                        <i class="fas fa-arrow-left me-2"></i>Kembali ke data proyek
+                    </a>
+                </div>
+                
+                <div>
+                    <a href="{{ route('proyek.printPdf', $proyek->id_proyek) }}" class="btn btn-outline-success" target="_blank">
+                        <i class="fas fa-print me-2"></i>Cetak Struk
+                    </a>
+                </div>
+
             </div>
         </div>
     </div>

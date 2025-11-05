@@ -24,6 +24,11 @@
                             <input type="text" class="form-control" value="{{ $proyek->id_proyek }}" disabled>
                         </div>
                         <div class="mb-3">
+                            <label for="invoice" class="form-label">Invoice</label>
+                            <input type="text" class="form-control" id="invoice" name="invoice"
+                                value="{{ old('invoice', $proyek->invoice) }}" required>
+                        </div>
+                        <div class="mb-3">
                             <label for="customer_id" class="form-label">Perusahaan (Customer)</label>
                             <select class="form-select" id="customer_id" name="customer_id" required>
                                 <option value="">Pilih Perusahaan...</option>

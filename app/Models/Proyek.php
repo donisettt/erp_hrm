@@ -15,7 +15,7 @@ class Proyek extends Model
     protected $primaryKey = 'id_proyek';
     protected $keyType = 'string';
 
-    protected $fillable = ['id_proyek', 'nama_proyek', 'harga_borongan', 'tanggal_mulai', 'tanggal_selesai', 'customer_id', 'spbu_id'];
+    protected $fillable = ['id_proyek', 'invoice', 'nama_proyek', 'harga_borongan', 'tanggal_mulai', 'tanggal_selesai', 'customer_id', 'spbu_id'];
 
     protected $casts = [
         'tanggal_mulai' => 'date',
@@ -31,6 +31,11 @@ class Proyek extends Model
     public function spbu()
     {
         return $this->belongsTo(Spbu::class, 'spbu_id', 'id');
+    }
+
+    public function transaksi()
+    {
+        return $this->hasOne(Transaksi::class, 'proyek_id', 'id_proyek');
     }
 
     public static function generateNextId(Customer $customer): string

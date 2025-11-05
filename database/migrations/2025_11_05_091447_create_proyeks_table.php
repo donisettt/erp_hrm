@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('proyek', function (Blueprint $table) {
             $table->string('id_proyek', 15)->primary();
+            $table->string('invoice');
             $table->string('nama_proyek');
             $table->decimal('harga_borongan', 15, 2)->default(0);
             $table->date('tanggal_mulai');

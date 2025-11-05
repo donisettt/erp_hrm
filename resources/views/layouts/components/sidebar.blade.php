@@ -7,7 +7,8 @@
         Request::is('material*');
 
     $isTransaksiActive = 
-        Request::is('proyek*');
+        Request::is('proyek*') ||
+        Request::is('transaksi*');
 @endphp
 
 <nav class="sidebar" id="sidebar">
@@ -74,7 +75,10 @@
                         <a class="nav-link {{ Request::is('proyek*') ? 'active' : '' }}" 
                            href="{{ route('proyek.index') }}">Data Proyek</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="#">Pemasukan</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('transaksi*') ? 'active' : '' }}" 
+                           href="{{ route('transaksi.index') }}">Data Transaksi</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="#">Pengeluaran</a></li>
                 </ul>
             </div>

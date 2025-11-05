@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Spbu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ProyekController extends Controller
 {
@@ -77,6 +78,7 @@ class ProyekController extends Controller
         $validator = Validator::make($request->all(), [
             'customer_id' => 'required|string|exists:customers,id_customer',
             'spbu_id' => 'required|integer|exists:spbu,id',
+            'invoice' => 'nullable|string|max:50',
             'nama_proyek' => 'required|string|max:255',
             'harga_borongan' => 'required|numeric|min:0',
             'tanggal_mulai' => 'required|date',
@@ -92,7 +94,23 @@ class ProyekController extends Controller
         $customer = Customer::find($validatedData['customer_id']);
         $newProyekId = Proyek::generateNextId($customer);
 
+        $prefix = strtoupper(substr(preg_replace('/^(PT|CV)\.?\s*/i', '', $customer->nama_perusahaan), 0, 3));
+
+        $lastInvoice = Proyek::where('invoice', 'like', "INV/{$prefix}/%")
+            ->orderBy('invoice', 'desc')
+            ->value('invoice');
+
+        if ($lastInvoice) {
+            $lastNumber = (int) substr($lastInvoice, -3);
+            $nextNumber = str_pad($lastNumber + 1, 3, '0', STR_PAD_LEFT);
+        } else {
+            $nextNumber = '001';
+        }
+
+        $monthYear = date('mY');
+
         $validatedData['id_proyek'] = $newProyekId;
+        $validatedData['invoice'] = "HRM/{$prefix}/{$monthYear}/{$nextNumber}";
 
         Proyek::create($validatedData);
 
@@ -135,6 +153,7 @@ class ProyekController extends Controller
         $validator = Validator::make($request->all(), [
             'customer_id' => 'required|string|exists:customers,id_customer',
             'spbu_id' => 'required|integer|exists:spbu,id',
+            'invoice' => 'required|string|max:50',
             'nama_proyek' => 'required|string|max:255',
             'harga_borongan' => 'required|numeric|min:0',
             'tanggal_mulai' => 'required|date',
@@ -148,6 +167,13 @@ class ProyekController extends Controller
         $proyek->update($validator->validated());
 
         return redirect()->route('proyek.index')->with('success', 'Data proyek berhasil diperbarui.');
+    }
+
+    public function printPdf(Proyek $proyek)
+    {
+        $proyek->load('customer', 'spbu');
+        $pdf = PDF::loadView('pages.proyek.pdf', ['proyek' => $proyek]);
+        return $pdf->stream('struk-proyek-' . $proyek->id_proyek . '.pdf');
     }
 
     /**
