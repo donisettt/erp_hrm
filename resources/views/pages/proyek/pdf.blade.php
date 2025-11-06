@@ -31,9 +31,6 @@
 
         .header .company-logo {
             width: 100px;
-            /* 
-             * src="{{ public_path('images/logo.png') }}"
-             */
         }
 
         .header .company-details {
@@ -108,11 +105,28 @@
             color: #4a55c7;
         }
 
-        .footer {
+        .signature-section {
             margin-top: 50px;
+            width: 300px;
+            float: right;
+            text-align: center;
+        }
+
+        .signature-section .signature-space {
+            height: 40px;
+            margin: 20px 0 10px 0;
+        }
+
+        .signature-section .name {
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 90px;
             text-align: center;
             font-size: 10px;
             color: #888;
+            clear: both;
         }
     </style>
 </head>
@@ -189,7 +203,6 @@
             </tbody>
         </table>
 
-        <!-- Total -->
         <table class="total-table">
             <tr>
                 <td>Subtotal</td>
@@ -203,8 +216,16 @@
 
         <div style="clear: both;"></div>
 
+        <div class="signature-section">
+            <p>Hormat kami,<br>Project Manager</p>
+            <div class="signature-space">
+                <!-- Ruang untuk tanda tangan -->
+            </div>
+            <p class="name">(Doni Setiawan Wahyono)</p>
+        </div>
+
+
         <div class="footer">
-            <p>Terima kasih atas kepercayaan Anda.</p>
             <p>Struk ini dicetak otomatis oleh sistem ERP HRM.</p>
         </div>
 
