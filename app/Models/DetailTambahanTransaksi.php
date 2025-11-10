@@ -10,5 +10,4 @@ class DetailTambahanTransaksi extends Model {
     protected $table = 'detail_tambahan_transaksi';
     
     protected $fillable = ['transaksi_id', 'nama_pengeluaran', 'qty', 'harga_satuan'];
-    public $timestamps = false;
 }

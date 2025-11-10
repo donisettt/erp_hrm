@@ -10,7 +10,6 @@ class DetailTeknisiTransaksi extends Model {
     protected $table = 'detail_teknisi_transaksi';
     
     protected $fillable = ['transaksi_id', 'karyawan_id', 'qty_hari', 'upah_satuan'];
-    public $timestamps = false;
 
     public function karyawan() {
         return $this->belongsTo(Karyawan::class, 'karyawan_id', 'id_karyawan');
